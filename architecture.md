@@ -1,8 +1,7 @@
-TODO: explain what a module is
 # Modules
 Every angular application must have at least one module, the root module, mostly
 called `AppModule` . In most of our applications this is possibly the only
-module you will ever have. This file can be found at `src/app/app.component.ts`
+module you will ever use. This file can be found at `src/app/app.component.ts` and it looks like:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,44 +18,40 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-The tag `@NgModule` is called a decorator which we will discuss in detail later.
-This decorator takes an object with different properties; `declarations`,
-`imports`, `providers` and `bootstrap` in this case but we will mostly work
-with the providers and declarations
+**@NGMOdule:** The tag `@NgModule` is called a decorator which we will discuss in detail later.
+This decorator takes an object with different properties, such as `declarations`,
+`imports`, `providers` and `bootstrap`. We will mostly be working
+with the `providers` and `declarations`.
 
-TODO: explain this providers well and possibly the declarations
+**providers:** Services are values, functions, or features that your application needs. We will come back to a more detailed description about services later. All our services are usually registered with the application by adding them to this section. By doing this you make the services available for use in the entire application.
 
-**providers:** all our services are usually registered with the
-application by adding them to this section, it is then available to
-the whole application
 **declarations** our components are usually declared in this section. In our case
-the `AppComponent` which was generated for us is declared here
+the generated `AppComponent` is declared here.
 
-## What about Javascript modules
-OK, as we had learnt earlier on javascript has modules too but it is different
-from angular modules. An NgModule is decorated by `@NgModule` and its is
-completely unrelated to the javascript modules
+## Angular modules are not Javascript modules 
+OK, as we had learnt earlier on JavaScript has modules too but it is different
+from Angular modules. An NgModule is decorated by `@NgModule` and its is
+completely unrelated to the JavaScript modules.
 
 TODO: we must have a previous section explaining what javascript modules are
 
 
-## Components
-Components control a section of the whole page that the user sees, lets put this
-into context, look at the youtube screenshot below
+# Components
+Components control a section of the whole page that the user sees, so let's put this
+into context. Go ahead and have a look at the YouTube screenshot below:
 
 TODO: add youtube video screenshot
 
-We can derive different sections from the screenshot above,
+From the screenshot above we can see that we can structure the page in different sections:
 
 1. section for playing the video
 2. section containing video description
 3. section for adding comment and displaying comments
 4. section for suggesting other video
 
-Each of the sections can be modeled as components then stiched together to make
-up the whole page
+Each of the sections is modeled as single components that are stitched together to make up the whole page.
 
-### How components look like
+### What components look like
 ```typescript
 import { Component, OnInit } from '@angular/core';
 
@@ -70,35 +65,37 @@ export class SuggestionsComponent {
   constructor() { }
 
   playVideo(video){
-    /*.............*/
+    ...
   }
 
 }
 ```
 
-We start by importing various libraries from the angular core that we need, in
-this case `Component` and `OnInit`. We then have a decorator `@Component` telling us that
-the class declared right below it is a component. This decorator has metadata about
-the `selector` , `templateUrl`, `styleUrls` which we will discuss the details later
+We start by importing various libraries we need from the Angular core. In this case 
+we have `Component` and `OnInit`. 
 
-Following the decorator is the class called `SuggestionsComponent` which has some
+The `@Component` decorator then tells us that the `SuggestionsComponent` class declared below 
+it is a component. This decorator has metadata about the `selector` , `templateUrl`, 
+`styleUrls`, which we will discuss the details later
+
+Following the decorator is the class called `SuggestionsComponent`, which has some
 functions in it:
 
- -  `constructor()` : used for initialisation when creating an object out of the
-class much like it happens in ruby class initializers
-- `playVideo()`: this function can be called from the template
+ -  `constructor()`: used for initialization when instantiating an object out of the 
+ class much like ruby class initializers
+- `playVideo()`: is a function that can be called from the template
 
-Lets have a look at the component which was generated for us at
-`src/app/application.component.ts` and identify everything from top to the end
-of the file(if you get stuck and is not able to identify some parts, go back
-and read on the sections)
+### Review the structure of the component
+Lets have a look at the component, which was generated for us at
+`src/app/application.component.ts` and identify everything from top to bottom, so that
+you are able to identify each part. If you get stuck and unable to understand each part, go back
+and re-read the previous sections.
 
 
 ## Metadata
-In TypeScript, you attach metadata by using a decorator. Look at the previous
-code after the last import statement we have `@Component` which is the decorator
-which takes an object that gives more information about the class called
-`SuggestionsComponent`
+In TypeScript, by using a decorator you are able to attach metadata to a class in order to attach additional information for example about the role the class, what it depends on and where the styling is. 
+
+Look at the code below and you can see that we have a `@Component`, which is the decorator. The decorator holds a JavaScript object (between `{`and `}`, remember?), which carries additional information about the class `SuggestionsComponent`. 
 
 ```typescript
 @Component({
@@ -108,40 +105,57 @@ which takes an object that gives more information about the class called
 })
 
 export class SuggestionsComponent {
-/*............*/
+...
 }
 
 ```
-Basically the decorator is used to give summary about the class much like
-the tag used by doctors on patients in hospital
+Basically the decorator is used to give us a brief summary about the class, much like
+hospital wrist bands worn by patients in hospitals.
 
-TODO: Image of doctor's tag
+![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg)
+
+
+```typescript
+@Component({
+  selector: 'app-suggestions',
+  templateUrl: './suggestions.component.html',
+  styleUrls: ['./suggestions.component.css']
+})
+
+export class SuggestionsComponent {
+...
+}
+
+```
+In the code above you see that the metadata has three properties:
 
 - `selector` : This is a css selector that tells angular where to place
 this particlar component in the page. To use this component we will later in
 out view put in something like `<app-suggestions></app-suggestions>`
-
-Go to `src/index.html`, can you identify how the selector has been used? (make
-sure you get this right before moving on)
 - `templateUrl`: Tells angular where the view for this  component is located. In
 out code above its at `./suggestions.component.html`
 - `styleUrls`: By now you can guess what this does, tells angular where our
 stylesheet for the component is
 
+Go to `src/index.html`, can you identify how the selector that has been used? Make
+sure you get this right before moving on.
+
 
 ## Templates
-This can be simply refered to as the view of the component, by this point you
-can tell that a component has its independent template, stylesheet and typescript
-file
-Templates are much like the regular plain html that we have with a few extra
-supermagical abilities and extra tags
+The template can be said to be the view of the component. By now you should be
+able to tell that a component has its own template, stylesheet and typescript
+file. Templates are much like plain HTML, but with a few extra
+supermagical abilities and extra tags.
+
+Look closely at the syntax in the code below and you will see a few additions like `*ngFor`, `(click)`, `[video]`
+`*ngIf`. Don't sweat over all these new weird-looking things, we will cover them later.
 
 ```html
 <h2>Suggested Videos</h2>
 
 <p><i>Click on a video to play</i></p>
 <ul>
-  <li *ngFor="let video of vidoes" (click)="selectVideo(video)">
+  <li *ngFor="let video of videos" (click)="selectVideo(video)">
     {{video.name}}
   </li>
 </ul>
@@ -149,48 +163,45 @@ supermagical abilities and extra tags
 <video-detail *ngIf="selectedVideo" [video]="selectedVideo"></video-detail>
 ```
 
-Look closely at the syntax, a few extra syntax like `*ngFor`, `(click)`, `[video]`
-`*ngIf`
-Dont sweat over all these new 'weird' things, we will cover them in bits
+### Review the template
+Now head over to `application.component.html` and have a look
+at the syntax there. Remove all the unordered list items, as well as the image, and save the changes to see the changes in the browser.
 
-Meanwhile head over to `application.component.html` and have a look
-at the syntax. Remove all the unordered list items, save the file and check if
-there are any changes in the browser
-
-### Relationship between template and component
-- The templates are usually tied to a particlar component.
-- The component identifies their template through the decorator
+## The relationship between the template and the component
+- the templates are usually tied to a particular component
+- the component identifies their respective template through the decorator
 - data can flow from the component to the template, from the template to
 the component or both ways
 
 TODO: diagram showing template and component
 
 
-### add a component
+### Review: Bringing together components and templates
 
-Lets generate a component called `comment`
+Let's generate a component called `comment`:
 ```shell
 $ng generate component comment
 # or a shorter version
 $ng g c comment
 ```
-Lets identify what we have learnt so far:
-- where is the component?
-- what is the decorator, what information does the decorator have?
-- where is the template?
-- add a paragraph with your name on the template
-- how do we add component to a view?
-- can I add this component to the index file?
-- can I add this file to the `app.component.htm` file?
+From the files we have just generated, let's identify what we have learnt so far:
+- where is the component file?
+- what is the decorator, and what information does the decorator have?
+- where is the template file?
+- add a paragraph with your name in the template
+- how do we add our component to a view?
+- can we add our component to the index file?
+- is it possible to add the component to the `app.component.htm` file?
 
 
-### Summary of template and component
+## Summarizing templates and components
 ![template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
 
+TODO: add explanation
 
 ## Data binding
-Remember when we said information can flow from the template to the component
-and vice versa? Lets talk about data binding
+Remember when we said that information is able to flow from the template to the component
+and vice versa? Let's talk about how to do this by using data binding.
 
 ### from template to the component
 Data can flow from our template to the component for example when a user clicks
