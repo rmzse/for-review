@@ -40,7 +40,7 @@ TODO: we must have a previous section explaining what javascript modules are
 Components control a section of the whole page that the user sees, so let's put this
 into context. Go ahead and have a look at the YouTube screenshot below:
 
-![YouTube sections and components](http://imgur.com/a/4FPft)
+![YouTube sections and components](http://www.rdcs.se/images/youtube-screenshot.png)
 
 From the screenshot above we can see that we can structure the page in different sections:
 
@@ -173,7 +173,7 @@ at the syntax there. Remove all the unordered list items, as well as the image, 
 - data can flow from the component to the template, from the template to
 the component or both ways
 
-![Diagram of template and component relationship](http://imgur.com/lieiuaj)
+![Diagram of template and component relationship](http://www.rdcs.se/images/diagram-of-template-n-compontent.png)
 
 ### Review how to bring components and templates together
 
