@@ -382,8 +382,9 @@ export class SuggestionsComponent {
 ```
 
 ### Try it out
-Which of the two videos in the example above will not be shown to the user by the template? 
-Answer this before moving on and make sure to try it out!
+Which of the two videos in the example above will not be shown to the user by the 
+template? 
+Answer this before moving on and **make sure to try it out**!
 
 
 ## Services
@@ -394,10 +395,10 @@ Services are also able to validate user input as when the user types it in. The 
 ![Username validation through services](http://www.rdcs.se/images/username.gif)
 
 
-## Dependancy injection
-We will be using dependancy injection to give our components the services they
-need. Lets say we have a service that gives us back a collection of videos from
-youtube, in order to use this service we have to inject it into our component
+## Dependency injection
+We will be using dependency injection to give our components the services they
+need. Let's say that we have a service that returns a collection of videos from
+YouTube. In order to be able to use this service we will have to inject it into our component:
 
 ```typescript
 constructor(private videoService: VideoService){}
@@ -407,15 +408,11 @@ playVideo(){
 }
 ```
 
-This is how dependancy injection is done in angular
-
-`constructor(private videoService: VideoService){}`
+The way to inject a dependancy is by writing `constructor(private videoService: VideoService){}`. **>>>> NB SIGU: Is it ok to use "The way to inject a dependancy" in this text?<<<<** Let's have a look at the different parts of this:
 - `VideoService`: the service that we are instanciating to `videoService` local
 variable. This must be imported first
 - `private`: shows that whatever we are declaring is private to this class
 - `videoService`: the local variable name that we can use within the class.
-this is usually preceded by the `this` keyword for example
-
-  ` this.videoService.play(video)`
+this is usually preceded by the `this` keyword as we see in the example above: ` this.videoService.play(video)`.
 
 
