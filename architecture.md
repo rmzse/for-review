@@ -410,7 +410,7 @@ playVideo(){
 
 The way to inject a dependancy is by writing `constructor(private videoService: VideoService){}`. **>>>> NB SIGU: Is it ok to use "The way to inject a dependancy" in this text?<<<<** Let's have a look at the different parts of this:
 - `VideoService`: is the service that we are instantiating and used with the `videoService` local
-variable. This must be imported first **>>>> NB SIGU: This fuzzy explanation needs to be claryfied, especially that last sentence "This must be imported first" needs to be explained (what you mean by that)<<<<**
+variable. This must be imported first **>>>> NB SIGU: This fuzzy explanation needs to be clarified, especially that last sentence "This must be imported first" needs to be explained (what you mean by that)<<<<**
 - `private`: shows that whatever we are declaring is private to this class
 - `videoService`: the local variable name that use within the class.
 When used this local variable usually preceded by the `this` keyword as we see in the example above: ` this.videoService.play(video)`.
