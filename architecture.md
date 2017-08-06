@@ -204,7 +204,7 @@ From the files we have just generated, let's identify what we have learnt so far
 
 **>>TODO: connect above explanation with reflective review using the screenshot below<<**
 
-![YouTube sections and components with children](http://www.rdcs.se/images/youtube-screenshot-children.png)
+![YouTube sections and components with children](http://www.rdcs.se/images/youtube-screenshot-children2.png)
 
 ## Data binding >> – should this header be h1?<<
 Remember when we said that data is able to flow from the template to the component
