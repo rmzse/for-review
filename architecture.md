@@ -221,7 +221,7 @@ Add the following to our template `application.compontent.html`
 <button (click)="handleClick()">Console log me</button>
 ```
 
-Hint: **>>what does "this" refer to here<<** this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`
+Hint: **>>>>what does "this" refer to here<<<<** this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`
 is a function in the matching component.
 
 Add the following code to our matching component inside our class. You should be able to match
@@ -247,7 +247,8 @@ What do you see? Click on the button, is anything printed out to the console (in
 ## Reversed data flow from the component to the template
 Data is also able to flow in the opposite direction, from inside the app all the way back to the template. In
 this case we have some information in the compontent that we want to display
-in the template. Let's go ahead and create a video in our component!
+in the template. 
+Let's go ahead and create a video in our component!
 
 ```typescript
 @Component({
@@ -267,7 +268,7 @@ export class AppComponent {
 }
 ```
 
-**>> NB SIGU: It is now a 'Like' button in the example above<<**
+**>>>> NB SIGU: It is now a 'Like' button in the example above<<<<**
 
 Now that we have created a video in our component, how do we go about to display the video inside the template?
 We use the squiggly brackets `{{ }}` to achieve this!
@@ -281,16 +282,12 @@ In our view lets add the code below to the button:
 ```
 This way of writing data within double squiggly brackets is known as string interpolation - does this ring a bell?
 
-**>> NB SIGU: Is the below a note to self or to the students?<<**
-NOTE: I am skipping property binding to minimize the number of things
-to be learnt in one day but they will come to realise its also present
-
 ## Two-way data binding
 In the previous two scenarios data can only flow in one direction at a time.
 Now we are going to see how data can flow from compontent to template and from template back to
 component.
 
-This is usally done by using the `[( )]` interpolation/syntax notation. **>> NB SIGU: Is interpolation the correct term?<<**
+This is usally done by using the `[( )]` interpolation/syntax notation. **>>>> NB SIGU: Is interpolation the correct term?<<<<**
 
 In order to demo this we need to import Angular form module into our
 `app.module.ts` – do you recall how we did our imports?
@@ -316,34 +313,31 @@ Now let's add this to our template:
 ```
 Now if you try to type something (anything) into the input field, what happens?
 
-**>> NB SIGU: Where does the below image belong to, above or Directives? Also, should we have a review section here?
+**>>>> NB SIGU: Where does the below image belong to, above or Directives? Also, should we have a review section here<<<<**
 
 ![data binding](https://angular.io/generated/images/guide/architecture/databinding.png)
 
-**>> NB SIGU: Suspecting the need for an explanation of the image above plus a review here.
+**>>>> NB SIGU: Suspecting the need for an explanation of the image above plus a review here<<<<**
 
-## Directives
+# Directives >> – should this header be h1?<<
 
-Directives usually change the browser DOM, can change elements in the current
-page
-There are build in directives that we will be using more so lets have a look
-at them
+Directives usually change the browser ![DOM](https://en.wikipedia.org/wiki/Document_Object_Model) and have the ability to change elements in the current page. **>>>>Ususally you can identify directives by ...<<<<** There are some built-in directives that we will be using more frequently, so let's go ahead and have a look at those.
 
-- `*ngFor`: This is used for looping over a collection of data.
-In the code shown below we have a collection of videos on the component so we
-loop over the videos and for each video we display its name
+## *ngFor
+`*ngFor` is used for looping over a collection of data.
+In the example below we have a collection of videos in a component and we use `ngFor` to loop over the collection in order to display data about each video.
 
 ```html
 <ul>
-  <li *ngFor="let video of vidoes">
+  <li *ngFor="let video of videos">
     Name: {{video.name}}
     Liked: {{video.liked}}
   </li>
 </ul>
 ```
-
-Add the code above to your template, now we need the collection of videos in
-in our component for this to work. In our component lets add some two videos
+### Try it out
+Add the code above to your template. Now we only need a collection of videos in
+in our component for this to work, so let's put some videos in our component.
 
 ```typescript
 export class SuggestionsComponent {
@@ -354,24 +348,26 @@ export class SuggestionsComponent {
 
   constructor() { }
 
-  /*.........*/
+  ...
 
   }
 
 
 ```
 
-- `*ngIf`: Only renders that section if a certain condition is true
+## *ngIf
+`*ngIf` renders a section of the template but only if a certain condition is valid or true.
 
 ```html
 <p *ngIf="isShown">This should be hidden or shown</p>
 ```
 
-We expect the paragraph above to be shown only if the value of `isShown` is true
-if the value of `isShown` is false then the paragraph should not be shown on the
-page
+We expect the paragraph above to be shown only if the value of `isShown` is true.
+If the value of `isShown` is false the paragraph should not be displayed on the
+page by the template. **>>>> NB SIGU: Is this an ok way to describe it?<<<<**
 
-We can define the value of `isShown` in the component
+
+We define the value of `isShown` inside the component:
 
 ```typescript
 export class SuggestionsComponent {
@@ -384,18 +380,18 @@ export class SuggestionsComponent {
 
   constructor() { }
 ```
-Since we have set the value of `isShown` to true will the paragraph be shown or
-not shown on the template? (answer this, try is out before moving on)
 
-Change the value of `isShown` to `false`. What will happen?
+### Try it out
+Which of the two videos in the example above will not be shown to the user by the template? 
+Answer this before moving on and make sure to try it out!
+
 
 ## Services
-Lets simplify the definition of services to 'that section of our app that
-brings us data for use'. The source is most likely an external API
+Services are everything that can act as a data source. For now let's simplify the definition of services to 'the section of an app that is able to give us data that we can use'. The source is in most cases an external API.
 
-Services can also do some things like validating user input as they type them in
+Services are also able to validate user input as when the user types it in. The example below show how the user is denied to use a certain username that is already taken. (Yes there is a typo in the first screen where a 'C' is missing)
 
-TODO: gif of user validation in IMS
+![Username validation through services](http://www.rdcs.se/images/username.gif)
 
 
 ## Dependancy injection
