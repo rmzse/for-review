@@ -173,7 +173,7 @@ at the syntax there. Remove all the unordered list items, as well as the image, 
 - data can flow from the component to the template, from the template to
 the component or both ways
 
-<img src="http://imgur.com/lieiuaj" alt="Diagram of template and component relationship" width="300px" />
+![Diagram of template and component relationship](http://imgur.com/lieiuaj)
 
 ### Review how to bring components and templates together
 
