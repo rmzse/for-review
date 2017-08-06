@@ -194,12 +194,17 @@ From the files we have just generated, let's identify what we have learnt so far
 
 
 ## Summarizing templates and components
+
+**>>TODO: introduction to explanation<<**
+
 ![template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
 
 
 **>>TODO: add explanation<<**
 
+**>>TODO: connect above explanation with reflective review using the screenshot below<<**
 
+![YouTube sections and components with children](http://www.rdcs.se/images/youtube-screenshot-children.png)
 
 ## Data binding >> – should this header be h1?<<
 Remember when we said that data is able to flow from the template to the component
