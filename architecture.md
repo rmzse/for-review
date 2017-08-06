@@ -206,30 +206,32 @@ From the files we have just generated, let's identify what we have learnt so far
 
 ![YouTube sections and components with children](http://www.rdcs.se/images/youtube-screenshot-children3.png)
 
-## Data binding >> – should this header be h1?<<
+# Data binding >> – should this header be h1?<<
 Remember when we said that data is able to flow from the template to the component
 and vice versa? Let's talk about how to do this by using data binding.
 
-### Data flowing from the template to the component
-In the YouTube example above, when a user clicks on a particular video suggestion the component related to that suggestion receives information about being clicked and additional information about that particular video suggestion can be passed to the component. The user's actions on the page are interpreted as events and handled by functions inside the component. This is  how user actions are interpreted by functions in the component to perform certain functionality within the app. 
+## Data flowing from the template to the component
+In the YouTube example above, when a user clicks on a particular video suggestion the template passes information to the component related to that suggestion telling it that the suggestion was clicked. It also passes along any other information about that particular suggestion thay may be embedded in the template. The user's actions on the page are interpreted as events by functions inside the component that handle events (event handler functions). These interpreted user events are used to trigger or perform certain functionality or commands within the app. That is how data flows from the template to the component. 
 
-This describes how data flows from the template to the component. In the code below the `handleClick()` function handles the user's `click` event and is found in the component related to that template. What other events can you think of when interacting with a web app?
+In the code below the `handleClick()` function handles the user's `click` event, so the `handleClick()` function is found in the component related to that template. What other events can you think of when interacting with a web page or app?
 
-Add this to our template `application.compontent.html`
+### Try it out
+Add the following to our template `application.compontent.html`
 ```html
 <button (click)="handleClick()">Console log me</button>
 ```
 
-Hint: this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`
-is a function in the matching component
+Hint: **>>what does "this" refer to here<<** this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`
+is a function in the matching component.
 
-Add this to our matching component inside our class(we should be able to match
-components to templates at this point)
+Add the following code to our matching component inside our class. You should be able to match
+components to templates at this point.
 ```typescript
 
 @Component({
 ...
 })
+
 export class AppComponent {
   title = 'app';
 
@@ -239,18 +241,19 @@ export class AppComponent {
 }
 ```
 
-Lets try this in the browser, open the app and the developer tools  to see the results.
-What did you see? Click on the button, is anything printed on the console?
+Let's see the code in action in the browser: open the app and the developer tools to see the results.
+What do you see? Click on the button, is anything printed out to the console (in developer tools)?
 
-### Reversed data flow from the component to the template
-Information flows in the opposite direction from what we discussed earlier. In
+## Reversed data flow from the component to the template
+Data is also able to flow in the opposite direction, from inside the app all the way back to the template. In
 this case we have some information in the compontent that we want to display
-in the template. Lets create a video on our component
+in the template. Let's go ahead and create a video in our component!
 
 ```typescript
 @Component({
 ...
 })
+
 export class AppComponent {
   title = 'app';
   video = {
@@ -260,58 +263,64 @@ export class AppComponent {
   }
 
   handleClick(){
-    console.log('Someone clicked on button on the template :-)')
-  }
+    console.log('Someone clicked the 'Like' button in the template :-)') 
 }
 ```
-Now that we have the video on our component, how do we display it in the template?
-We can use the squiggly brackets `{{}}` to achieve this
 
-In our view lets add this below the button
+**>> NB SIGU: It is now a 'Like' button in the example above<<**
+
+Now that we have created a video in our component, how do we go about to display the video inside the template?
+We use the squiggly brackets `{{ }}` to achieve this!
+
+In our view lets add the code below to the button:
 
 ```html
 <p>Video title: {{video.title}}</p>
 <p>Views: {{video.views}}</p>
 <p> Liked: {{video.liked}}
 ```
-This is commonly known as string iterpolation- does this name ring a bell?
+This way of writing data within double squiggly brackets is known as string interpolation - does this ring a bell?
 
-NOTE: I am skipping property binding to minimise the number of things
+**>> NB SIGU: Is the below a note to self or to the students?<<**
+NOTE: I am skipping property binding to minimize the number of things
 to be learnt in one day but they will come to realise its also present
 
-### two way data binding
-In the previous two scenarios data can only flow in one direction, in one way.
-In this case, data flows from compontent to template and from template to
+## Two-way data binding
+In the previous two scenarios data can only flow in one direction at a time.
+Now we are going to see how data can flow from compontent to template and from template back to
 component.
 
-This is usally done by using `[()]`
+This is usally done by using the `[( )]` interpolation/syntax notation. **>> NB SIGU: Is interpolation the correct term?<<**
 
-In order to demo this we need to import anglar form module into our
-`app.module.ts`, remember how we did our imports?
+In order to demo this we need to import Angular form module into our
+`app.module.ts` – do you recall how we did our imports?
 ```typescript
   import { FormsModule } from '@angular/forms';
 
-  [...]
+  ...
 
   @NgModule({
     imports: [
-      [...]
+      ...
       FormsModule
     ],
-    [...]
+    ...
   })
 ```
 
 
-Now add this to our template
+Now let's add this to our template:
 ```html
- <p>Video name: {{video.name}}</p> <!-- remember this {{}} gets data from compontent -->
+ <p>Video name: {{video.name}}</p> <!-- keep in mind that '{{ }}' gets data from the compontent -->
  <input [(ngModel)] = "video.name"/>
 ```
-type into the input field, what happens?
+Now if you try to type something (anything) into the input field, what happens?
 
+**>> NB SIGU: Where does the below image belong to, above or Directives? Also, should we have a review section here?
 
 ![data binding](https://angular.io/generated/images/guide/architecture/databinding.png)
+
+**>> NB SIGU: Suspecting the need for an explanation of the image above plus a review here.
 
 ## Directives
 
