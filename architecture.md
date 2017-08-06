@@ -114,7 +114,7 @@ export class SuggestionsComponent {
 Basically, the decorator is used to give us a brief summary about the class, much like
 the information on hospital wrist bands worn by hospital patients does.
 
-![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg){ width: 200px; }
+![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg)
 
 
 ```typescript
@@ -173,7 +173,7 @@ at the syntax there. Remove all the unordered list items, as well as the image, 
 - data can flow from the component to the template, from the template to
 the component or both ways
 
-<img src="http://imgur.com/a/DVPUU" alt="Diagram of template and component relationship" width="300px;"/>
+<img src="http://imgur.com/a/DVPUU" alt="Diagram of template and component relationship" width="300px" />
 
 ### Review how to bring components and templates together
 
