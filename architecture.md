@@ -40,7 +40,7 @@ TODO: we must have a previous section explaining what javascript modules are
 Components control a section of the whole page that the user sees, so let's put this
 into context. Go ahead and have a look at the YouTube screenshot below:
 
-TODO: add youtube video screenshot
+![YouTube sections and components](http://imgur.com/a/4FPft)
 
 From the screenshot above we can see that we can structure the page in different sections:
 
@@ -89,12 +89,13 @@ functions:
 Lets have a look at the component, which was generated for us at
 `src/app/application.component.ts` and identify everything from top to bottom, so that
 you are able to identify each part. 
-**IMPORTANT:** If you get stuck and unable to understand any of its parts, go back
-and re-read the text above that deals with the component structure.
+**IMPORTANT:** 
+If you get stuck and unable to understand any of its parts, go back
+and re-read the text above about the component structure.
 
 
 ## Metadata
-In TypeScript, in order to attach additional information to a class – for example information about what the class does, where the styling is and what role that class plays in the app – you are able to do so by using a decorator. 
+In TypeScript, in order to attach additional information to a class – for example information about what the class does, where the styling is and what role that class plays in the app – you can use a decorator. 
 
 Looking at the code below you can see that we have a decorator in `@Component`. The decorator holds and prefixes a JavaScript object, which in turn carries additional information about the class `SuggestionsComponent` (the JavaScript object is within `{`and `}`, remember?). 
 
@@ -113,7 +114,7 @@ export class SuggestionsComponent {
 Basically, the decorator is used to give us a brief summary about the class, much like
 the information on hospital wrist bands worn by hospital patients does.
 
-![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg =300px)
+![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg){ width: 200px; }
 
 
 ```typescript
@@ -137,20 +138,17 @@ our code above it is located at `./suggestions.component.html`
 - `styleUrls`: By now you can guess what this does, which is to tell Angular where our
 stylesheet for the component is located.
 
-**QUESTION TO SIGU:** looking above, is it really `styleUrls` in plural?
-
-Now head over to `src/index.html` and see if you are able to identify how the selector that has been used. **Make
-sure** you get this right before moving on.
+### Review the metadata
+It's time to make another short review of your understanding. Head over to `src/index.html` and see if you are able to identify how the selector has been used. Grab a coach if you have questions or need confirmation about what you understand.
+**Make sure** you get this right before moving on.
 
 
 ## Templates
 The template can be said to be the view of the component. By now you should be
-able to tell that a component has its own files for the template, the stylesheet and for TypeScript. Templates are much like plain HTML, but with a few extra supermagical abilities and extra tags.
+able to tell that a component has its own files for the template, the stylesheet and TypeScript. Templates are much like plain HTML, but with a few extra supermagical abilities and extra tags.
 
-**QUESTION TO SIGU:** on line 148 above I have written it like "TypeScript", is this correct?
-
-Look closely at the syntax in the code below and you will see a few additions like `*ngFor`, `(click)`, `[video]`
-`*ngIf`. Don't sweat over all these new weird-looking things, we will cover them later.
+Look closely at the syntax in the code below and you will see a few additions like `*ngFor`, `(click)`, `[video]` and
+`*ngIf`. Don't be nervous over all these new and weird-looking things, we will cover them later.
 
 ```html
 <h2>Suggested Videos</h2>
@@ -166,8 +164,8 @@ Look closely at the syntax in the code below and you will see a few additions li
 ```
 
 ### Review the template
-Now head over to `application.component.html` and have a look
-at the syntax there. Remove all the unordered list items, as well as the image, and save the changes to see the changes in the browser.
+It is now time to review the template, so head over to `application.component.html` and have a look
+at the syntax there. Remove all the unordered list items, as well as the image, and save the changes to see how the changes take effect in the browser.
 
 ## The relationship between the template and the component
 - the templates are usually tied to a particular component
@@ -175,10 +173,9 @@ at the syntax there. Remove all the unordered list items, as well as the image, 
 - data can flow from the component to the template, from the template to
 the component or both ways
 
-TODO: diagram showing template and component
+![Diagram of template and component relationship](http://imgur.com/a/DVPUU)
 
-
-### Review: Bringing together components and templates
+### Review how to bring components and templates together
 
 Let's generate a component called `comment`:
 ```shell
@@ -187,44 +184,45 @@ $ng generate component comment
 $ng g c comment
 ```
 From the files we have just generated, let's identify what we have learnt so far:
-- where is the component file?
+- where in the file structure is the component file located?
 - what is the decorator, and what information does the decorator have?
-- where is the template file?
-- add a paragraph with your name in the template
+- where is the template file located?
+- Now add a paragraph with your name in the template, to answer the following questions:
 - how do we add our component to a view?
 - can we add our component to the index file?
-- is it possible to add the component to the `app.component.htm` file?
+- is it possible to add the component to the `app.component.html` file?
 
 
 ## Summarizing templates and components
 ![template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
 
-TODO: add explanation
+**>>TODO: add explanation<<**
 
-## Data binding
-Remember when we said that information is able to flow from the template to the component
+
+
+## Data binding >> – should this header be h1?<<
+Remember when we said that data is able to flow from the template to the component
 and vice versa? Let's talk about how to do this by using data binding.
 
-### from template to the component
-Data can flow from our template to the component for example when a user clicks
-on a particlar video the component can receive information about the clicked video
-Whatever the user does is usually interpreted as an event, this event needs a
-function that receives it at the component and perfoms a function
+### Data flowing from the template to the component
+In the YouTube example above, when a user clicks on a particular video suggestion the component related to that suggestion receives information about being clicked and additional information about that particular video suggestion can be passed to the component. The user's actions on the page are interpreted as events and handled by functions inside the component. This is  how user actions are interpreted by functions in the component to perform certain functionality within the app. 
 
-Hint: this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`
-is a function in the matching component
+This describes how data flows from the template to the component. In the code below the `handleClick()` function handles the user's `click` event and is found in the component related to that template. What other events can you think of when interacting with a web app?
 
 Add this to our template `application.compontent.html`
 ```html
 <button (click)="handleClick()">Console log me</button>
 ```
 
+Hint: this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`
+is a function in the matching component
+
 Add this to our matching component inside our class(we should be able to match
 components to templates at this point)
 ```typescript
 
 @Component({
-/*............*/
+...
 })
 export class AppComponent {
   title = 'app';
@@ -238,14 +236,14 @@ export class AppComponent {
 Lets try this in the browser, open the app and the developer tools  to see the results.
 What did you see? Click on the button, is anything printed on the console?
 
-### from the component to the templates
+### Reversed data flow from the component to the template
 Information flows in the opposite direction from what we discussed earlier. In
 this case we have some information in the compontent that we want to display
 in the template. Lets create a video on our component
 
 ```typescript
 @Component({
-/*............*/
+...
 })
 export class AppComponent {
   title = 'app';
@@ -401,11 +399,12 @@ playVideo(){
 This is how dependancy injection is done in angular
 
 `constructor(private videoService: VideoService){}`
-- `private` - shows that whatever we are declaring is private to this class
-- `videoService` - the local variable name that we can use within the class.
+- `VideoService`: the service that we are instanciating to `videoService` local
+variable. This must be imported first
+- `private`: shows that whatever we are declaring is private to this class
+- `videoService`: the local variable name that we can use within the class.
 this is usually preceded by the `this` keyword for example
 
   ` this.videoService.play(video)`
 
-- `VideoService` - the service that we are instanciating to `videoService` local
-variable. This must be imported first
+
