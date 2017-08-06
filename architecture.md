@@ -1,7 +1,7 @@
 # Modules
 Every angular application must have at least one module, the root module, mostly
-called `AppModule` . In most of our applications this is possibly the only
-module you will ever use. This file can be found at `src/app/app.component.ts` and it looks like:
+called `AppModule`. In most of our applications this is possibly the only
+module you will ever use. This file can be found at `src/app/app.component.ts` and it looks like this:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -18,19 +18,19 @@ import { AppComponent } from './app.component';
 export class AppModule {}
 ```
 
-**@NGMOdule:** The tag `@NgModule` is called a decorator which we will discuss in detail later.
+- **@NGModule:** The tag `@NgModule` is called a decorator which we will discuss in detail later.
 This decorator takes an object with different properties, such as `declarations`,
 `imports`, `providers` and `bootstrap`. We will mostly be working
 with the `providers` and `declarations`.
 
-**providers:** Services are values, functions, or features that your application needs. We will come back to a more detailed description about services later. All our services are usually registered with the application by adding them to this section. By doing this you make the services available for use in the entire application.
+- **providers:** Services are values, functions, or features that your application needs. We will come back to a more detailed description about services later. All our services are usually registered with the application by adding them to this section. By doing this you make the services available for use in the entire application.
 
-**declarations** our components are usually declared in this section. In our case
+- **declarations:** our components are usually declared in this section. In our case
 the generated `AppComponent` is declared here.
 
 ## Angular modules are not Javascript modules 
-OK, as we had learnt earlier on JavaScript has modules too but it is different
-from Angular modules. An NgModule is decorated by `@NgModule` and its is
+OK, as we learnt earlier JavaScript has modules too, but they are different
+from Angular modules. An Angular module (NgModule) is decorated by `@NgModule` and it is
 completely unrelated to the JavaScript modules.
 
 TODO: we must have a previous section explaining what javascript modules are
@@ -74,28 +74,29 @@ export class SuggestionsComponent {
 We start by importing various libraries we need from the Angular core. In this case 
 we have `Component` and `OnInit`. 
 
-The `@Component` decorator then tells us that the `SuggestionsComponent` class declared below 
-it is a component. This decorator has metadata about the `selector` , `templateUrl`, 
+The `@Component` decorator then tells us that the `SuggestionsComponent` class declared after 
+the decorator (`@Component`) is a component. The decorator itself has metadata about the `selector` , `templateUrl`, 
 `styleUrls`, which we will discuss the details later
 
-Following the decorator is the class called `SuggestionsComponent`, which has some
-functions in it:
+Following the decorator we find the `SuggestionsComponent` class, which contains the following
+functions:
 
  -  `constructor()`: used for initialization when instantiating an object out of the 
- class much like ruby class initializers
-- `playVideo()`: is a function that can be called from the template
+ class, much like ruby class initializers
+- `playVideo()`: a function that can be called from the template
 
 ### Review the structure of the component
 Lets have a look at the component, which was generated for us at
 `src/app/application.component.ts` and identify everything from top to bottom, so that
-you are able to identify each part. If you get stuck and unable to understand each part, go back
-and re-read the previous sections.
+you are able to identify each part. 
+**IMPORTANT:** If you get stuck and unable to understand any of its parts, go back
+and re-read the text above that deals with the component structure.
 
 
 ## Metadata
-In TypeScript, by using a decorator you are able to attach metadata to a class in order to attach additional information for example about the role the class, what it depends on and where the styling is. 
+In TypeScript, in order to attach additional information to a class – for example information about what the class does, where the styling is and what role that class plays in the app – you are able to do so by using a decorator. 
 
-Look at the code below and you can see that we have a `@Component`, which is the decorator. The decorator holds a JavaScript object (between `{`and `}`, remember?), which carries additional information about the class `SuggestionsComponent`. 
+Looking at the code below you can see that we have a decorator in `@Component`. The decorator holds and prefixes a JavaScript object, which in turn carries additional information about the class `SuggestionsComponent` (the JavaScript object is within `{`and `}`, remember?). 
 
 ```typescript
 @Component({
@@ -109,10 +110,10 @@ export class SuggestionsComponent {
 }
 
 ```
-Basically the decorator is used to give us a brief summary about the class, much like
-hospital wrist bands worn by patients in hospitals.
+Basically, the decorator is used to give us a brief summary about the class, much like
+the information on hospital wrist bands worn by hospital patients does.
 
-![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg)
+![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg =300px)
 
 
 ```typescript
@@ -129,23 +130,24 @@ export class SuggestionsComponent {
 ```
 In the code above you see that the metadata has three properties:
 
-- `selector` : This is a css selector that tells angular where to place
-this particlar component in the page. To use this component we will later in
-out view put in something like `<app-suggestions></app-suggestions>`
-- `templateUrl`: Tells angular where the view for this  component is located. In
-out code above its at `./suggestions.component.html`
-- `styleUrls`: By now you can guess what this does, tells angular where our
-stylesheet for the component is
+- `selector`: This is a css selector that tells Angular where to place
+this particlar component in the page. We will later use this component in our view by putting `<app-suggestions></app-suggestions>` in the code of the view.
+- `templateUrl`: This tells Angular where in our code structure the file containing the view for this component is located. In
+our code above it is located at `./suggestions.component.html`
+- `styleUrls`: By now you can guess what this does, which is to tell Angular where our
+stylesheet for the component is located.
 
-Go to `src/index.html`, can you identify how the selector that has been used? Make
-sure you get this right before moving on.
+**QUESTION TO SIGU:** looking above, is it really `styleUrls` in plural?
+
+Now head over to `src/index.html` and see if you are able to identify how the selector that has been used. **Make
+sure** you get this right before moving on.
 
 
 ## Templates
 The template can be said to be the view of the component. By now you should be
-able to tell that a component has its own template, stylesheet and typescript
-file. Templates are much like plain HTML, but with a few extra
-supermagical abilities and extra tags.
+able to tell that a component has its own files for the template, the stylesheet and for TypeScript. Templates are much like plain HTML, but with a few extra supermagical abilities and extra tags.
+
+**QUESTION TO SIGU:** on line 148 above I have written it like "TypeScript", is this correct?
 
 Look closely at the syntax in the code below and you will see a few additions like `*ngFor`, `(click)`, `[video]`
 `*ngIf`. Don't sweat over all these new weird-looking things, we will cover them later.
