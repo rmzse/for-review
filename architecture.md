@@ -390,13 +390,13 @@ Answer this before moving on and **make sure to try it out**!
 ## Services
 Services are everything that can act as a data source. For now let's simplify the definition of services to 'the section of an app which is able to give us data that we can use'. The source is in most cases an external API.
 
-Services are also able to validate user input as when the user types it in. The example below show how the user is denied to use a certain username that is already taken (yes there are typos in the first screen where a 'C' and a  'T' are missing).
+Services are also able to validate user input as when the user types it in. The example below shows how the user is denied to use a certain username that is already taken (yes there are typos in the first screen where a 'C' and a  'T' are missing).
 
 ![Username validation through services](http://www.rdcs.se/images/username.gif)
 
 
 ## Dependency injection
-We will be using dependency injection to give our components the services they
+We will be using dependency injection to equip our components with the services that they
 need. Let's say that we have a service that returns a collection of videos from
 YouTube. In order to be able to use this service we will have to inject it into our component:
 
@@ -409,10 +409,10 @@ playVideo(){
 ```
 
 The way to inject a dependancy is by writing `constructor(private videoService: VideoService){}`. **>>>> NB SIGU: Is it ok to use "The way to inject a dependancy" in this text?<<<<** Let's have a look at the different parts of this:
-- `VideoService`: the service that we are instanciating to `videoService` local
-variable. This must be imported first
+- `VideoService`: is the service that we are instantiating and used with the `videoService` local
+variable. This must be imported first **>>>> NB SIGU: This fuzzy explanation needs to be claryfied, especially that last sentence "This must be imported first" needs to be explained (what you mean by that)<<<<**
 - `private`: shows that whatever we are declaring is private to this class
-- `videoService`: the local variable name that we can use within the class.
-this is usually preceded by the `this` keyword as we see in the example above: ` this.videoService.play(video)`.
+- `videoService`: the local variable name that use within the class.
+When used this local variable usually preceded by the `this` keyword as we see in the example above: ` this.videoService.play(video)`.
 
 
